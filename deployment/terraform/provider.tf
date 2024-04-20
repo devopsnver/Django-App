@@ -2,6 +2,11 @@ provider "aws" {
   region = var.region
 }
 
+provider "kubernetes" {
+  config_path = "${path.module}/kubeconfig_eks-prod"
+}
+
+
 terraform {
   required_providers {
     aws = {

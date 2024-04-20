@@ -29,8 +29,3 @@ output "eks_node_groups" {
   description = "Information about the node groups in the EKS cluster."
 }
 
-output "cluster_token" {
-  description = "Token for authenticating with the EKS cluster."
-  value       = data.aws_eks_cluster_auth.cluster.token
-}
-
