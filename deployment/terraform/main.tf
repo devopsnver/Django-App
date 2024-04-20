@@ -22,13 +22,13 @@ module "eks" {
   version = "17.24.0"
 
   cluster_name    = "eks-${var.environment}"
-  cluster_version = "1.21"
+  cluster_version = "1.29"
   subnets         = module.vpc.private_subnets
 
   node_groups = {
     default = {
-      desired_capacity = 2
-      max_capacity     = 3
+      desired_capacity = 1
+      max_capacity     = 2
       min_capacity     = 1
 
       instance_type = "t3.small"
