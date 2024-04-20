@@ -1,8 +1,3 @@
-output "cluster_endpoint" {
-  value       = module.eks.cluster_endpoint
-  description = "Endpoint for EKS cluster API."
-}
-
 output "cluster_id" {
   value       = module.eks.cluster_id
   description = "EKS cluster ID."
@@ -33,3 +28,9 @@ output "eks_node_groups" {
   value       = module.eks.node_groups
   description = "Information about the node groups in the EKS cluster."
 }
+
+output "cluster_token" {
+  description = "Token for authenticating with the EKS cluster."
+  value       = data.aws_eks_cluster_auth.cluster.token
+}
+

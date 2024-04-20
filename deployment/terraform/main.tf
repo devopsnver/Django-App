@@ -24,6 +24,7 @@ module "eks" {
   cluster_name    = "eks-${var.environment}"
   cluster_version = "1.29"
   subnets         = module.vpc.private_subnets
+  vpc_id          = module.vpc.vpc_id
 
   node_groups = {
     default = {
@@ -40,3 +41,5 @@ module "eks" {
     Environment = var.environment
   }
 }
+
+
