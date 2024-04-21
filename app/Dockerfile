@@ -1,29 +1,28 @@
 # Use an official Python runtime as a parent image
-FROM python:3.9-slim
+FROM python:3.8-slim
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-# Set work directory
+# Set the working directory in the container
 WORKDIR /code
 
-# Install dependencies
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install any needed packages specified in requirements.txt
 COPY requirements.txt /code/
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Copy entire project (adjust this line if necessary)
-COPY polls/ /code/
+# Copy the current directory contents into the container at /code
+COPY . /code/
 
-# Declare SECRET_KEY as an argument and set it as an environment variable
-ARG SECRET_KEY
-ENV SECRET_KEY=${SECRET_KEY}
+# Make port 8000 available to the world outside this container
+EXPOSE 8000
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
+# Define environment variable
+ENV NAME World
 
-# Run migrations
-RUN python manage.py migrate
-
-# Command to run the application
-CMD ["uwsgi", "--ini", "uwsgi.ini"]
+# Run uwsgi when the container launches
+CMD ["uwsgi", "--ini", "polls/uwsgi.ini"]
