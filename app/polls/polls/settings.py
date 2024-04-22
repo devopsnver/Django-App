@@ -28,7 +28,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['aac70188c326c43d0ad083cf4082ca6e-1750022581.us-west-2.elb.amazonaws.com']
 
 
 # Application definition
@@ -81,9 +81,9 @@ WSGI_APPLICATION = 'polls.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config("POSTGRES_DB"),
-        'USER': config("POSTGRES_USER"),
-        'PASSWORD': config("POSTGRES_PASSWORD"),
+        'NAME': 'pollsdb',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
         'HOST': 'postgres',
         'PORT': 5432,
     }

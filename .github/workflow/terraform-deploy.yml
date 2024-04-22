@@ -1,0 +1,24 @@
+name: Manage Infrastructure with Terraform
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'deployment/terraform/**'
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+    
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+    
+    - name: Terraform Init and Apply
+      run: |
+        cd deployment/terraform
+        terraform init
+        terraform apply -auto-approve
