@@ -5,8 +5,9 @@ on:
     branches:
       - main
     paths:
-      - 'app/django-app/**'
+      - 'app/polls/**'
       - 'Dockerfile'
+      - 'entrypoint.sh'
 
 jobs:
   build-and-push:

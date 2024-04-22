@@ -24,5 +24,8 @@ EXPOSE 8000
 # Define environment variable
 ENV NAME World
 
-# Run uwsgi when the container launches
-CMD ["uwsgi", "--ini", "polls/uwsgi.ini"]
+# Adding a script that will handle initial setup and start the server
+COPY ./entrypoint.sh /code/
+RUN chmod +x /code/entrypoint.sh
+
+CMD ["/code/entrypoint.sh"]

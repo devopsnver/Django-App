@@ -28,7 +28,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['aac70188c326c43d0ad083cf4082ca6e-1750022581.us-west-2.elb.amazonaws.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
